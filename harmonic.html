@@ -1,0 +1,496 @@
+<!DOCTYPE html> 
+<html lang="en">    
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Harmonic Motion</title>
+    <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
+    <link rel="stylesheet" href="mvp.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <!--ERROR MESSAGE -->
+    <p id="HarmonicOscillator-notSupportedMessage" class="HarmonicOscillator-alert"> Please use a newer browser to see the simulation.</p>
+</head>
+<body>
+    <div id="particles-js"></div>
+
+    <div class="page" style="display: grid; place-items: center; height: 450vh; "> 
+
+        <!-- Make an underlined banner -->
+        <div banner="banner" style="width: 100%; height: 100%; position: relative; display: flex; justify-content: center; align-items: center; flex-direction: column; background: #121212; outline-style: solid;  ">
+            <h1 style="color: #be96f3; font-size: 50px; text-align: center; margin: 0; padding: 0;   "> Harmonic Motion: A Web-Dev Perspective </h1>
+            <h5 style="color: #ffffff; font-size: 20px; text-align: center; margin: 0; padding: 0;"> Powered by: <img src ="./images/logo.png" style="height:30px;" /> </h5>
+
+        </div>
+        
+        <!--
+        <header style="width: 100%; align-items: center; background-color: #242424; position: relative; ">
+            <h1 style="text-align: center; margin: 0"> Harmonic Motion: A Web-Dev Perspective</h1>
+            <h5 style="color:#98c7ee; margin: 0" > by Brandon Le</h5>
+        </header> -->
+
+        <div style="padding: 40px;"> 
+        <div class="Poster-Wrapper" style="display: flex; justify-content: space-between; width: 100%; height: 100%; position: relative; margin-bottom: -200px; ">
+            
+            <!-- Make a 3-column layout with equal sizing and space between each box -->
+            <div class="About-Box" style="flex-basis: 30%; height: 510px; background-color: #242424; border: 1px solid #242424; border-radius: 10px;  outline: 2px solid white;">
+                <h2 style="text-align: center; color: #96acf3;"> Introduction </h2>
+                <p > Web development is an essential component in day-to-day scientific computing encompassed in many programming languages ranging from Javascript to even PHP. 
+                    Many research studies rely on these tools, however, how do programmers replicate these experiments with mark-up languages like <b style="color:orange;"> HTML </b>, stylizing in <b style="color:rgb(79, 132, 247)">CSS</b>, and the programming behind <b style="color:rgb(255, 255, 123)"> Javascript</b>?
+                    This research study is intended to answer the question, <b style="color:rgb(238, 210, 50)"> “How well does a simulated harmonic motion of a mass-spring system align with the behavior of a real-world mass-spring system? Is one reliable over the other?” </b> To think of answering this question,
+                    we will <span class="important-text">  observe exactly how "perfect" this simulation can be, and if it eliminates or adds any sources of error realistic to its real-world counterpart. </span>
+                </p>
+                <div class="image-row" style="display: flex; justify-content: center; align-items: center;">
+                <img src="./images/HTML5.png" class="language-logo"  />
+                <img src="./images/CSS.png" class="language-logo" />
+                <img src="./images/logo.png" class="language-logo"/>
+            </div>
+            </div>
+        
+            <!-- Add two more boxes with the same styling as the first one -->
+            <div class="About-Box" style="flex-basis: 30%; height: 510px; background-color: #242424; border: 1px solid #242424; border-radius: 10px;  outline: 2px solid white;" >
+                <h2 style="text-align: center; color: #96acf3;"> Abstract </h2>
+                <p >
+This study examines the validity of scientific computing when replicating real-world physics scenarios. In particular, the research observes a harmonic simulation built with Javascript and HTML, 
+stylized in CSS, and compares the results of scenarios within the simulation to a study by Warawut Sukmak, who examined the real-time graphing of a mass-spring system given initial variables. 
+The objective of this study is to create an Harmonic Motion simulator with real-time recording of each oscillation interval, and to test whether or not real-world experiments can be replicated and 
+essentially replace the physical mass-spring system itself. <br> <br>This experiment was run under Mozilla Firefox’s Developer browser as it is well known for its optimization in web development. Additionally, the program was run under a Ryzen 5 3600 that operates at 3.6 GHz, which is important to note since rerunning this simulation with the exact variables may vary differently on other browsers and computer components. 
+<br> <b> <span style="color: #be96f3">Keywords:</span> Harmonic motion Simulation, Mass-Spring system, Replicate, Validity of Scientific Computing</b>
+</p>
+            </div>
+        
+            <div class="About-Box" style="flex-basis: 30%; height: 510px; background-color: #242424; border: 1px solid #242424; border-radius: 10px;  outline: 2px solid white;">
+                <h3 style="text-align: center; color: #96acf3;"> What is Harmonic Motion in a Mass-Spring System? </h3>
+                <p > Harmonic motion refers to an <span class="important-text"> periodic motion in which it oscillates back and forth around an equilibrium position 
+                    from the cause of a restoring force. </span>The harmonic motion that is examined in this study will be from a mass-spring system. <span class="important-text"> Mass-spring systems operate when a mass 
+                    is displaced from its equilibrium (at rest) to then cause its spring to exert a force proportional to the displacement in the opposite direction. </span>
+                    This is an attempt to restore the mass to its original position, however, it simply makes the mass oscillate, converting potential energy to kinetic energy back and forth. </p>
+                <!--Align the picture to the center-->
+                <img src="./images/Energy.gif" style="display: block;margin:auto; border-radius: 10px;"/>
+            </div>
+        </div>
+    </div> <!--End of Padding for Upper Portion -->
+
+
+
+    <div class="container" style="width: 100%; height: 60%; position: relative; max-width: 1800px; margin-bottom: -100px;" >
+        
+        <div class = "HarmonicOscillator" style="width: 100%; height: 300px; align-self: center; z-index: 2;" >
+            <canvas class="HarmonicOscillator-canvas"> 
+            </canvas>
+           
+        </div> <!-- END OF HARMONIC OSCILLATOR CLASS -->
+
+        <div class="HarmonicOscillator-controls" style="text-align: center; align-items: center;">
+            <label class = "HarmonicOsccilator-label HarmonicOsccilator-timer" style="position: relative; left: 0px;"> Seconds: </label>
+            <label class = "HarmonicOsccilator-label HarmonicOsccilator-longestRun" style="position: relative; left: 175px; top: -28px; height: 0px;"> Longest:  </label>
+            <label class = "HarmonicOsccilator-label HarmonicOsccilator-recentRun" style="position: relative; left: 360px; top: -28px; height: 0px;"> Recent:  </label>
+            <button class = "HarmonicOscillator-button HarmonicOsccilator-turnOff" id="HarmonicOsccilator-turnOff" style="position: relative; left: 600px; top: -28px; height: 0px; font-size:20px;  text-align: center; padding: 0px; background-color: #ffffff; color: #ffffff; border: 1px solid #ffffff; border-radius: 10px; outline: 2px solid white
+            " > Turn off particles </button>
+
+            <!--<label class = "HarmonicOsccilator-label HarmonicOsccilator-chromeModifier" id="ChomeOptimization"style="position: relative; left: 700px; top: -28px; height: 0px;"> Running on Chrome? Click here.  </label> -->
+           
+
+        </div>
+
+        <div class="HarmonicOscillator-buttons" style="text-align: center; align-items: center;">
+            <button class="HarmonicOscillator-button HarmonicOscillator-buttonStart" id="HarmonicOscillator-startButton">Start</button>
+            <button class="HarmonicOscillator-button HarmonicOscillator-buttonStop" id = "HarmonicOscillator-stopButton">Stop</button>
+            <button class="HarmonicOscillator-button HarmonicOscillator-buttonReset" id="HarmonicOscillator-resetButton">Reset</button>
+        </div>
+
+        <div class = "HarmonicOscillator-adjustments" style = "align-items: center; height: 20%;"  >
+
+        <p class="HarmonicOscillator-Mass">Mass (kg)<br>
+            <input class="HarmonicOscillator-input HarmonicOscillator-inputSmall HarmonicOscillator-Mass" type="number" id="HarmonicOscillator-mass" min="1" max="10000" step="1" pattern="\d*">
+          </p>
+          
+          <p class="HarmonicOscillator-Spring" style="position: relative; top:-76px; left: 110px; width: 10%;">Spring const (k)<br>
+            <input class="HarmonicOscillator-input HarmonicOscillator-inputSmall HarmonicOscillator-isTextCentered" type="number" id="HarmonicOscillator-springConstant" name="springConstant" min="1" max="10000" step="1" pattern="\d*">
+          </p>
+          <p class="HarmonicOscillator-Amplitude" style="position: relative; top: -140px; right: 110px; width: 10%;"> Amplitude<br>
+            <input class="HarmonicOscillator-input HarmonicOscillator-inputSmall HarmonicOscillator-Amplitude" type="number" id="HarmonicOscillator-amplitude" min="1" max="10000" step="1" pattern="\d*">
+          </p>
+
+        </div>
+
+<!--
+            <p> Amplitude </p>
+            <input class="HarmonicOscillator-input HarmonicOscillator-inputSmall HarmonicOscillator-Amplitude" type="number" id="HarmonicOscillator-amplitude" min="1" max="10000" step="1" pattern="\d*">-->
+
+
+      
+
+    </div> <!-- END OF CONTAINER CLASS -->
+    <div style="padding: 40px;">
+    <div class = "Container-Poster" style="width:100%; height: 100%; ">
+        
+
+        <div class="Poster-Wrapper" style="display: flex; justify-content: space-between; width: 100%; height: 80%; position: relative; top: 30px; flex-wrap: wrap;">
+            <!-- Make a 3-column layout with equal sizing and space between each box -->
+            <div class="About-Box" style="flex-basis: 30%; height: 860px; background-color: #242424; border: 1px solid #242424; border-radius: 10px; margin-bottom: 40px;  outline: 2px solid white;">
+                <h2 style="text-align: center; color: #96acf3;"> Equation of Harmonic Motion for the Simulator </h2>
+                <p> <span> 1. </span> Examine the force law for harmonic motion: <code class="equation"> F = -kx  </code> </p>
+                <p ><span> 2.</span> Algebraically manipulate with Newton's law, <i> F = ma </i>: <code class="equation"> ma = -kx  </code> </p>
+                <p ><span> 3. </span> Solve for acceleration: <code class="equation"> a = (-k/m)x  </code> </p>
+                <p > <span>4. </span> Equation of Motion -> <i> a </i> becomes the position of the mass, <i>x"</i>: <code class="equation"> x" = (-k/m)x  </code> </p>
+                <h2 style="text-align: center; color: #96acf3;"> Additional Equations </h2>
+                <p > <span>5. </span> Solve for velocity, <i> V<sub>f</sub></i>: <code class="equation"> V<sub>i</sub> + ΔT * a </code> </p>
+                <p > <span>>6.</span> Verify Time Results, T in seconds: <code class="equation"> T = 2π√(m/k) </code> </p>
+                <p > <span>7.</span> Solve (4) with Euler's Method: <code class="equation">  x<sub>new</sub>= x<sub>current</sub> + ΔT * (v<sub>current</sub> + ΔT * a)  </code> </p>
+                <p > <span>8.</span> Calculate Average Time: <code class="equation"> ΣT/n </code> </p>
+                <p > <span>9.</span> Angular Frequency: <code class="equation"> ω = (2π)/T </code> </p>
+                <p > <span>10.</span> Harmonic Motion Graph Equation: <code class="equation"> x(t) = Acos(ωt) </code> </p>
+
+                <h2 style="text-align: center; color: #96acf3;"> Simulation Notes </h2>
+                <p > When the simulation begins, the first recorded oscillation will <b>always</b> be slightly lower than the next. <span class="important-text">  This is merely because
+                    the mass starts 0.01 below it's actual equilibrium position to allow the functionality of the "most-recent run timer" along with how the timer resets everytime it finishes an oscillation. </span>
+                In addition, the simulation imitates a <span class="important-text">  frictionless mass-spring system with no damping. </span> Thus, the results of this simulation should be <span class="important-text">  compared to a real-world system with the same parameters. </span> Each 
+            run should mathematically be checked by the timer equation (6) to verify the correctiveness.   </p>
+            </div>
+        
+            <!-- Add two more boxes with the same styling as the first one -->
+            <div class="About-Box" style="flex-basis: 30%; height: 860px; background-color: #242424; border: 1px solid #242424; border-radius: 10px; justify-content: center; margin-bottom: 20px; outline: 2px solid white;">
+                <h2 style="text-align: center; color: #96acf3;"> Method </h2>
+                <p > To observe the research question, the method that will be used is a simulation of the Harmonic Oscillator embedded into this website. To dive deeper, we can first explain how the simulation is built for mathematical accuracy. 
+
+                    Given that we know the equation of motion (equation 4), the simulation uses the functions in the <span style="color:#96acf3;"> <b>Method's Source Code</b></span> section to <span class="important-text"> solve it using Euler's method </span> in the form:  
+                    <code> x<sub>new</sub>= x<sub>current</sub> + ΔT * (v<sub>current</sub> + ΔT * a) 
+                    </code>
+                </p>
+                <p >
+                The data that will be replicated with this method is a <span class="important-text">real-world experiment conducted by Warawut Sukmak, who examined the real-time graphing of a mass-spring system  </span> given initial variables and time results: 
+                </p>
+                <div style="display: flex; justify-content: center;">
+
+                <table style="width:90%; color: #ffffff; align-self: center;">
+                    <tr>
+                      <th>Experiment</th>
+                      <th>Mass (kg)</th>
+                      <th>Spring Constant (N/m)</th>
+                      <th>Time (s)</th>
+                    </tr>
+                    <tr>
+                      <td>Exp1</td>
+                      <td>0.187</td>
+                      <td>13.563</td>
+                      <td>0.78417</td>
+                    </tr>
+                    <tr>
+                      <td>Exp2</td>
+                      <td>0.421</td>
+                      <td>13.563</td>
+                      <td>1.14999</td>
+                    </tr>
+                    <tr>
+                      <td>Exp3</td>
+                      <td>0.421</td>
+                      <td>23.975</td>
+                      <td>0.86320</td>
+                    </tr>
+                  </table>
+                  </div>
+                  <p > 
+                    <b>NOTE:</b> The time it takes for the mass-spring system to complete one oscillation is recorded. 
+                    </p>
+
+                <p > In addition, Warawut included graphs for his experiment, and the goal of mine is to replicate that data, 
+                    showing how valid this method of scientific computing is. After performing the experiments indicated in the table, the time it takes to complete each oscillation 
+                    with these given variables will be recorded. <span class="important-text">To ensure accuracy and precision, the mass-spring in the simulation must oscillate 10 times for the trial to be completed. </span>
+                    Lastly, the <span class="important-text">average time will be calculated to compare the results of the simulation to the real-world experiment </span>  to truly answer, <b> how well does it align to their counterparts? </b></p>
+            </div>
+        
+            <div class="About-Box" style="flex-basis: 30%; height: 860px; background-color: #242424; border: 1px solid #242424; border-radius: 10px; margin-bottom: 20px;  outline: 2px solid white;">
+                <h2 style="text-align: center; color: #96acf3;"> Method ~ Source Code </h2>
+                <p style="text-align: left; color: #96acf3;"> 
+                    1. Calculate the acceleration (change of velocity) for the curernt position.
+                    </p>
+
+                    <code style="text-align: left; margin-bottom:30px;"> 
+                    
+                    /*NOTE: deltaT varies amongst different browsers and machines. DeltaT is the given value below because my computer needs this to create a realistic timer.*/
+                    <br>
+
+                    var deltaT = 0.003475; // time increment in seconds
+                        <br>
+                        <br>
+                    var acceleration = calculateAcceleration(state.position);
+                    <br>
+                    <br>
+                    // Returns acceleration (change of velocity) for the given position
+                    <br>
+                    <br>
+                        function calculateAcceleration(x) {   <br>
+                          /* We are using the equation of motion for the harmonic oscillator:
+                          a = -(k/m) * x
+                           Where a is acceleration, x is displacement, k is spring constant and m is mass.*/ 
+
+                           <br>
+                           <br>
+                     
+                          return -(state.springConstant / state.mass) * x;
+                          <br>
+                        }
+                    
+                  
+                   
+                    </code>
+                    <p style="text-align: left; color: #96acf3;"> 
+                        2. Next, use the current acceleration to predict the new velocity.
+                        </p>
+                    <code style="text-align: left; margin-bottom:30px;"> 
+                        //Next, use the current acceleration to predict the new velocity <br>
+                        // Calculates the new velocity: current velocity plus the change. <br>
+                            function newVelocity(acceleration) { <br>
+                              return state.velocity + deltaT * acceleration; <br>
+                            } <br>
+                        State.velocity = newVelocity(acceleration);
+                         
+                        </code>
+                        <p style="text-align: left; color:#96acf3;"> 3. Lastly, calculate the new position via:  <code> x<sub>new</sub>= x<sub>current</sub> + ΔT * (v<sub>current</sub> + ΔT * a) 
+                        </code> </p>
+                <code style="text-align:left; margin-bottom:30px;">
+                    /*As acceleration and velocity is updated, every frame of the simulator runs these functions to calculate a new position*/
+            <br>
+                    function newPosition() {
+                     //current position + the change <br>
+                       return state.position + deltaT * state.velocity; <br>
+                     }
+                
+                </code>
+            </div> <!-- End of First Row-->
+
+                 <!-- Second row of three boxes -->
+    <div class="About-Box" style="flex-basis: 30%; height: 800px; background-color: #242424; border: 1px solid #242424; border-radius: 10px;  outline: 2px solid white; align-items: center; margin-bottom: 40px;">
+        <!-- Content of the first box (Row 2) ~ display 10 times of each experiment-->
+        <h2 style="text-align: center; color: #96acf3;"> Results </h2>
+        
+        <div style="display: flex; justify-content: center;">
+        <table style="width: 48%; color: #ffffff; text-align: center; table-layout: fixed; align-content: center; align-self: center;">
+            
+             
+            <tr>
+            <th class="exp-header" style="width: 25%;">Trial</th>
+              <th class="exp-header"  >Exp1</th>
+              <th  class="exp-header">Exp2</th>
+              <th class="exp-header">Exp3</th>
+            </tr>
+            
+            <tr>
+                <td> 1 </td>
+                <td> 0.7 </td>
+                <td> 1.07 </td>
+                <td> 0.79 </td>
+            </tr>
+            <tr>
+                <td> 2 </td>
+                <td> 0.73 </td>
+                <td> 1.1 </td>
+                <td> 0.83 </td>
+             
+            </tr>
+            <tr>
+                <td> 3 </td>
+                <td> 0.73 </td>
+                <td> 1.1 </td>
+                <td> 0.83 </td>
+              
+            </tr>
+            <tr>
+                <td> 4 </td>
+                <td> 0.73 </td>
+                <td> 1.1 </td>
+                <td> 0.83 </td>
+              
+            </tr>
+            <tr>
+                <td> 5 </td>
+                <td> 0.73 </td>
+                <td> 1.1 </td>
+                <td> 0.82 </td>
+                </tr>
+            <tr>
+                <td> 6 </td>
+                <td> 0.73 </td>
+                <td> 1.1 </td>
+                <td> 0.83 </td>
+                </tr>
+                <!-- Count up to 10 -->
+            <tr>
+                <td> 7 </td>
+                <td> 0.73 </td>
+                <td> 1.1 </td>
+                <td> 0.83 </td>
+                </tr>
+                <tr>
+            <td> 8 </td>
+            <td> 0.74 </td>
+                <td> 1.1 </td>
+                <td> 0.83 </td>
+            </tr>
+
+            <tr>
+            <td> 9 </td>
+            <td> 0.73 </td>
+                <td> 1.1 </td>
+                <td> 0.82 </td>
+            </tr>
+
+            <tr>
+             <td> 10 </td>
+             <td> 0.73 </td>
+                <td> 1.1 </td>
+                <td> 0.82 </td>
+            </tr>
+
+            <tr>
+               
+                <td> MEAN </td>
+                <td> 0.728 </td>
+                   <td> 1.097 </td>
+                   <td> 0.823 </td>
+                </b>
+               </tr>
+          
+          </table>
+          </div>
+       
+          <p > 
+            <b>NOTE:</b> The time it takes for the mass-spring system to complete one oscillation is recorded for each trial. 
+            </p>
+            <p > 
+                These results can be compared to the Warawut experiment to see how close they are to his. In addition, the time that was supposed to be measured for each experiment is calculated via, Equation 6. 
+                <span class="important-text">By comparing the results of Warawuts, and the simulation, to the predicted time from Equation 6 will show how accurate the simulation is compared to the real world system.  </span>
+                </p>
+        
+       
+    </div>
+
+    <div class="About-Box" style="flex-basis: 30%; height: 800px; background-color: #242424; border: 1px solid #242424; border-radius: 10px;  outline: 2px solid white; justify-content: center; margin-bottom: 40px;">
+      <h2 style="text-align:center; color: #96acf3;"> Performing the Method </h2>
+                   <p > 
+             Video not playing? Open it in a new tab or turn offs "enhanced tracking protection."</p>
+        <iframe src="https://drive.google.com/file/d/1UgpKhKljVZh5JxrkjqGiwBft0LU4YmTV/preview" width="640" height="480" allow="autoplay"></iframe>
+        <p> After the method was performed, Time vs Displacement graphs were created using equations, 8,9, & 10 based on the <b style="color: #96acf3;">Results panel.</b> Given the time of the ten trials,
+        calculate angular frequency, to then form an cosine equation of the experiment(s) using equation 10, where A (amplitude) is 1. </p>
+    </div>
+
+    <div class="About-Box" style="flex-basis: 30%; height: 800px; background-color: #242424; border: 1px solid #242424; border-radius: 10px;  outline: 2px solid white; margin-bottom: 40px;">
+       <h2 style="text-align: center; color: #96acf3; height: 3%;" > Time(x) vs Displacement(y) Graphs </h2>
+        <div style="display: flex; justify-content: center; height: 200px;"  >
+        <img src="./images/Experiment1Graph.png" style="width: 80%; height: 100%; border-radius: 10px;"/>
+
+
+        </div>
+
+        <p > <code> x(t) = cos(8.630749048t) </code>  </p>
+
+        <div style="display: flex; justify-content: center; height: 200px;"  >
+            <img src="./images/Experiment2Graph.png" style="width: 80%; height: 100%; border-radius: 10px;"/>
+    
+            </div>
+            <p > <code> x(t) = cos(5.72760739t) </code>  </p>
+            <div style="display: flex; justify-content: center; height: 200px;"  >
+                <img src="./images/Experiment3Graph.png" style="width: 80%; height: 100%; border-radius: 10px;"/>
+        
+                </div>
+                <p > <code> x(t) = cos(7.634490045t) </code>  </p>
+    </div> <!-- End of Second Row-->
+
+    <div class="About-Box" style="flex-basis: 30%; height: 700px; background-color: #242424; border: 1px solid #242424; border-radius: 10px;  outline: 2px solid white; justify-content: center; ">
+        <h2 style="text-align:center; color: #96acf3;"> Comparison to Intended Results & Real Mass-Spring System </h2>
+                     <p > <b style="color:#be96f3"> Experiment 1: </b>After comparing the results of the simulation to Warawut's experiment, there is a 0.05617 difference between the results. 
+                        Though there is a gap between these results, it can be observed that the simulation is very close to the inteneded mathematical solution, calculated from Equation 6. Using equation 6 with the 
+                        intial varibales of experiment, we get: <code> T = 2π√(0.187/13.563) = 0.7377730565</code>, meaning there is a <code> 0.0097730565 </code> difference with the simulation and a <code>0.0463969435</code> 
+                        difference with Warawut's system.  
+                      </p>
+
+                      <p > <b style="color:#be96f3"> Experiment 2: </b>Like Experiment 1, a pattern of observation is predictable in Experiment 2. There is a <code>0.05299</code> difference between Warawut's system and the simulation. However, equation 6 
+                        mathematically intends the results must be <code> T = 2π√(0.421/13.563) = 1.106988312</code>, meaning there is a <code>0.0099883118</code> difference with the simulation and a <code>0.043001688</code> difference with Warawut's system.
+                      </p>
+
+                      <p > <b style="color:#be96f3"> Experiment 3: </b>Lastly, by using the same predictable pattern, there is a 0.0402 difference between 
+                        Warawut's system and the simulation. However, equation 6 proves, 
+                        <code> T = 2π√(0.421/23.975) = 0.8326099726 </code>, meaning there is a <code>0.0096099726</code> difference with the simulation and a <code>0.0305900274</code> difference with Warawut's system.</p>
+      </div>
+  
+      <div class="About-Box" style="flex-basis: 30%; height: 700px; background-color: #242424; border: 1px solid #242424; border-radius: 10px;  outline: 2px solid white; margin-bottom: 20px;">
+         <h2 style="text-align: center; color: #96acf3; height: 3%;" > Conclusion </h2>
+         <p > 
+            By examining the "<span style="color: #96acf3;"><b>Comparison to Intended Results & Real Mass-Spring System</b></span>" panel, it can be concluded that <span class="important-text">the simulation is very close to the intended mathematical solution, however, marginally inaccurate to the circumstances
+            of a real-world mass-spring system. The simulation perfectly replicates a mass-spring system in a case where there is no source of errors besides the computer's processing power. However, it does not exactly
+            align the behavioral errors of a real-world mass-spring system. </span>
+        </p>
+
+        <p > The real-world mass system's results can have sources of errors present due to simply, its method of measuring the time.<span class="important-text"> Theoretically, it is too fast for a human to measure the time of which
+            oscillations are completed, thus creating a source of error. </span>The simulation, however, predicts the oscillation's movement perfectly by constantly memorizing where the location of a mass is at a given time.
+            This is why <span class="important-text">the simulation is more accurate than the real-world system, and does not align to the behaviors of a real-world mass-spring system correctly.  </span> 
+        </p>
+
+        <p > To answer the question, <b style="color:rgb(238, 210, 50)">"How well does a simulated harmonic motion of a mass-spring system align with the behavior of a real-world mass-spring system?"</b>
+            it can be concluded that the simulation can perfectly replicate a mass-spring system in a real-world setting within a frictionless environment, where no damping is present; however, it does not
+            replicate the potential errors of a real-world sytem. <span class="important-text">Therefore, it can be said that the simulation is more reliable than the physical experiment, but not as accurate as the physical experiment in terms of 
+            realism in obtaining errors. </span></p>
+          </div>
+
+          <div class="About-Box" style="flex-basis: 30%; height: 700px; background-color: #242424; border: 1px solid #242424; border-radius: 10px;  outline: 2px solid white;  margin-bottom: 20px;">
+            <h2 style="text-align: center; color: #96acf3; height: 3%;" > Sources & References </h2>
+            <p > <b style="color:#be96f3"> 1.</b> Harmonic motion. Harmonic motion. (n.d.). <a href="http://labman.phys.utk.edu/phys135core/modules/m9/harmonic_motion.html"> http://labman.phys.utk.edu/phys135core/modules/m9/harmonic_motion.html</a></p>
+            <p > <b style="color:#be96f3"> 2.</b> Khan Academy. (n.d.). Introduction to simple harmonic motion review (article). Khan Academy. <a href="https://www.khanacademy.org/science/oscillations-and-waves-essentials/x9db3ed27fc69f96d:how-are-tall-buildings-protected-from-earthquakes/x9db3ed27fc69f96d:mathematics-of-simple-harmonic-motion/a/introduction-to-simple-harmonic-motion-review"> https://www.khanacademy.org/science/oscillations-and-waves-essentials/x9db3ed27fc69f96d:how-are-tall-buildings-protected-from-earthquakes/x9db3ed27fc69f96d:mathematics-of-simple-harmonic-motion/a/introduction-to-simple-harmonic-motion-review </a>  </p>
+            <p > <b style="color:#be96f3"> 3.</b> Programming a harmonic oscillator in HTML &amp; javascript. Wooooow! (2016, April 15).<a href="https://evgenii.com/blog/programming-harmonic-oscillator/"> https://evgenii.com/blog/programming-harmonic-oscillator/ </a> </p>
+            <p > <b style="color:#be96f3"> 4.</b> M, D. (2015, September 25). Simple harmonic motion graphs IB physics. YouTube. <a href="https://www.youtube.com/watch?v=C1rp6TUVEbQ"> https://www.youtube.com/watch?v=C1rp6TUVEbQ  </a> </p>
+            <p > <b style="color:#be96f3"> 5.</b> Sukmak, W. (2022, January). Real-Time Graphing of Simple Harmonic Motion of Mass on Springs with an Arduino Based on an Experiment Set for Teaching and Learning Physics. The Turkish Online Journal of Educational Technology. <a href=https://files.eric.ed.gov/fulltext/EJ1338131.pdf> https://files.eric.ed.gov/fulltext/EJ1338131.pdf </a> </p>
+
+
+        </div>
+            
+        </div> <!-- END OF POSTER-WRAPPER-->
+
+      
+        
+</div> <!-- POSTER CONTAINER -->
+</div> <!-- END OF PAGE-->
+<div class="footer"> 
+    <h2 > Programmed by Brandon Le </h2>
+    <a class="linkedin-logo" href="https://www.linkedin.com/in/brandon-tran-le/"> <img src="images/linkedin-logo.png" style="height:30px;"> </img>    </a>
+    <h2 style="color:#8fd8f5"> UCLA-ID: <span style="color:rgb(255, 255, 123); "> 805993439</span> </h2>
+</div>    
+<script src="./scripts/main.js"> </script>
+    <script src="./scripts/particles.js"></script>
+    <script src="./scripts/app.js"></script>
+    <script>
+        // Your JavaScript code goes here
+        document.addEventListener("DOMContentLoaded", function () {
+          window.onload = function () {
+            particlesJS.load("particles-js", "particles-config.json", function () {
+              console.log("particles.js loaded - callback");
+            });
+            var particlesOn = true;
+            var offButton = document.getElementById("HarmonicOsccilator-turnOff");
+            offButton.addEventListener("click", function () {
+              var particlesContainer = document.getElementById("particles-js");
+    if (particlesOn) {
+    particlesContainer.style.display = "none";
+    console.log("Particles turned off");
+    particlesOn = false;
+    offButton.innerHTML = "Turn on particles";
+  } else {
+    particlesOn = true;
+    particlesContainer.style.display = "block"; // Turn on particles
+    offButton.innerHTML = "Turn off particles";
+    console.log("Particles turned on");
+  }
+            });
+          };
+        });
+      </script>
+
+</body>
+
+
+
+</html>
+
+
+
+ 
