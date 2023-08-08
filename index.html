@@ -136,7 +136,7 @@ essentially replace the physical mass-spring system itself. <br> <br>This experi
                 <p > <span>4. </span> Equation of Motion -> <i> a </i> becomes the position of the mass, <i>x"</i>: <code class="equation"> x" = (-k/m)x  </code> </p>
                 <h2 style="text-align: center; color: #96acf3;"> Additional Equations </h2>
                 <p > <span>5. </span> Solve for velocity, <i> V<sub>f</sub></i>: <code class="equation"> V<sub>i</sub> + ΔT * a </code> </p>
-                <p > <span>>6.</span> Verify Time Results, T in seconds: <code class="equation"> T = 2π√(m/k) </code> </p>
+                <p > <span>6.</span> Verify Time Results, T in seconds: <code class="equation"> T = 2π√(m/k) </code> </p>
                 <p > <span>7.</span> Solve (4) with Euler's Method: <code class="equation">  x<sub>new</sub>= x<sub>current</sub> + ΔT * (v<sub>current</sub> + ΔT * a)  </code> </p>
                 <p > <span>8.</span> Calculate Average Time: <code class="equation"> ΣT/n </code> </p>
                 <p > <span>9.</span> Angular Frequency: <code class="equation"> ω = (2π)/T </code> </p>
@@ -202,11 +202,11 @@ essentially replace the physical mass-spring system itself. <br> <br>This experi
         
             <div class="About-Box" style="flex-basis: 30%; height: 860px; background-color: #242424; border: 1px solid #242424; border-radius: 10px; margin-bottom: 20px;  outline: 2px solid white;">
                 <h2 style="text-align: center; color: #96acf3;"> Method ~ Source Code </h2>
-                <p style="text-align: left; color: #96acf3;"> 
+                <p style="text-align: left; color: #be96f3;"> 
                     1. Calculate the acceleration (change of velocity) for the curernt position.
                     </p>
 
-                    <code style="text-align: left; margin-bottom:30px;"> 
+                    <code style="text-align: center; margin-bottom:30px;"> 
                     
                     /*NOTE: deltaT varies amongst different browsers and machines. DeltaT is the given value below because my computer needs this to create a realistic timer.*/
                     <br>
@@ -235,7 +235,7 @@ essentially replace the physical mass-spring system itself. <br> <br>This experi
                   
                    
                     </code>
-                    <p style="text-align: left; color: #96acf3;"> 
+                    <p style="text-align: center; color: #be96f3"> 
                         2. Next, use the current acceleration to predict the new velocity.
                         </p>
                     <code style="text-align: left; margin-bottom:30px;"> 
@@ -247,7 +247,7 @@ essentially replace the physical mass-spring system itself. <br> <br>This experi
                         State.velocity = newVelocity(acceleration);
                          
                         </code>
-                        <p style="text-align: left; color:#96acf3;"> 3. Lastly, calculate the new position via:  <code> x<sub>new</sub>= x<sub>current</sub> + ΔT * (v<sub>current</sub> + ΔT * a) 
+                        <p style="text-align: center; color:#be96f3;"> 3. Lastly, calculate the new position via:  <code> x<sub>new</sub>= x<sub>current</sub> + ΔT * (v<sub>current</sub> + ΔT * a) 
                         </code> </p>
                 <code style="text-align:left; margin-bottom:30px;">
                     /*As acceleration and velocity is updated, every frame of the simulator runs these functions to calculate a new position*/
