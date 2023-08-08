@@ -1,3 +1,4 @@
+permalink: /index.html
 # Harmonic Motion Project for Summer 2023 Phys 1A @ UCLA
 This study examines the validity of scientific computing when replicating real-world physics scenarios. In particular, the research observes a harmonic simulation built with Javascript and HTML, 
 stylized in CSS, and compares the results of scenarios within the simulation to a study by Warawut Sukmak, who examined the real-time graphing of a mass-spring system given initial variables. 
