@@ -1,7 +1,6 @@
 (function () {
   alert(
-    "Welcome to my Physics 1A project! Feel free to read around the website and play with the simulation :) IMPORTANT NOTE: if everything is all over the place, please zoom out in Chrome!"
-"
+    "Welcome to my Physics 1A project! Feel free to read around the website and play with the simulation :) NOTE: if everything is all over the place, please zoom out in chrome!"
   );
 
   // Timer variables
